@@ -1,0 +1,17 @@
+parameters:
+    # app version
+    app_version: 0.1.0
+
+    # app installation directory
+    install_dir: ~/.tangoman/bash_aliases
+
+git:
+    # Default git server
+    git_server: github.com
+
+    # Default git username
+    git_username: TangoMan75
+
+    # Use SSH
+    git_ssh: true
+
