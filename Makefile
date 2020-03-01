@@ -33,18 +33,19 @@ NL        = \033[0m\n
 help:
 	@printf "${TITLE}TangoMan $(shell basename ${CURDIR})${NL}\n"
 
-	@printf "${CAPTION}description:${NL}\n"
-	@printf "$(WARNING) Place desired .sh files inside /bash_files folder\n"
-	@printf " Prefix your .sh files with underscore to concatenate them${NL}\n"
+	@printf "${CAPTION} Description:${NL}\n"
+	@printf "$(WARNING)  Place desired .sh files inside /bash_files folder${NL}"
+	@printf "$(WARNING)  Prefix your .sh files with underscore to concatenate them${NL}\n"
 
 	@printf "${CAPTION} Usage:${NL}"
 	@printf "${WARNING}  make [command]${NL}\n"
 
-	@printf "${CAPTION}Available commands:${NL}\n"
-	@awk '/^### / { printf "\n${BOLD}%s${NL}", substr($$0, 5) } \
-	/^[a-zA-Z0-9_-]+:/ { if( match(PREV, /^## /)) HELP = substr(PREV, 4); else HELP = ""; \
-		printf " ${LABEL}%-18s${DEFAULT} ${PRIMARY}%s${NL}", substr($$1, 0, index($$1, ":")), HELP \
-	} { PREV = $$0 }' ${MAKEFILE_LIST}
+	@printf "${CAPTION} Commands:${NL}"
+	@awk '/^### /{printf"\n${BOLD}%s${NL}",substr($$0,5)} \
+	/^[a-zA-Z0-9_-]+:/{HELP="";if( match(PREV,/^## /))HELP=substr(PREV, 4); \
+		printf " ${LABEL}%-12s${DEFAULT} ${PRIMARY}%s${NL}",substr($$1,0,index($$1,":")),HELP \
+	}{PREV=$$0}' ${MAKEFILE_LIST}
+
 
 ##################################################
 ### Install
